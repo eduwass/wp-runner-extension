@@ -3,6 +3,11 @@
   "displayName": "WordPress Runner",
   "description": "Run PHP code in WordPress context directly from VSCode",
   "version": "0.0.1",
+  "publisher": "wp-runner-dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eduwass/wp-runner-extension.git"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -136,13 +141,17 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "bun run compile",
     "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./"
+    "watch": "tsc -watch -p ./",
+    "package": "bunx vsce package",
+    "install-local": "code --install-extension wp-runner-0.0.1.vsix --force",
+    "package-and-install": "bun run package && bun run install-local"
   },
   "devDependencies": {
+    "@types/node": "^16.18.126",
     "@types/vscode": "^1.74.0",
-    "@types/node": "16.x",
+    "@vscode/vsce": "^2.22.0",
     "typescript": "^4.9.4"
   }
-} 
+}

@@ -41,6 +41,79 @@ A smart VSCode extension to run PHP code in WordPress context with both quick ex
 - WordPress installation with WP-CLI available
 - VSCode workspace should be in your WordPress project directory
 
+## Development
+
+### Prerequisites
+- [Bun](https://bun.sh/) - Fast JavaScript runtime and package manager
+- [VS Code](https://code.visualstudio.com/) with TypeScript support
+
+### Setup
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/eduwass/wp-runner-extension.git
+   cd wp-runner-extension
+   ```
+
+2. Install dependencies:
+   ```bash
+   bun install
+   ```
+
+3. Compile TypeScript:
+   ```bash
+   bun run compile
+   ```
+
+### Development Workflow
+
+#### VS Code Tasks
+Use `Ctrl+Shift+P` → "Tasks: Run Task" to access these development tasks:
+
+- **`compile`** - Compile TypeScript to JavaScript
+- **`watch`** - Watch for changes and auto-compile
+- **`package extension`** - Create a `.vsix` package file
+- **`install extension locally`** - Install the extension in your local VS Code
+- **`package and install`** - Package and install in one step (default build task: `Ctrl+Shift+B`)
+- **`uninstall extension`** - Remove the extension from VS Code
+
+#### Command Line Scripts
+```bash
+# Development
+bun run compile              # Compile TypeScript
+bun run watch               # Watch mode compilation
+
+# Packaging & Installation
+bun run package             # Package extension (.vsix)
+bun run install-local       # Install in local VS Code
+bun run package-and-install # Package and install (recommended)
+```
+
+#### Quick Development Cycle
+1. Make changes to `src/extension.ts`
+2. Run `Ctrl+Shift+B` (or "package and install" task)
+3. Reload VS Code window (`Ctrl+R`) to test changes
+4. Repeat
+
+### Project Structure
+```
+wp-runner-extension/
+├── src/
+│   └── extension.ts        # Main extension code
+├── out/                    # Compiled JavaScript (auto-generated)
+├── .vscode/
+│   └── tasks.json         # VS Code development tasks
+├── package.json           # Extension manifest and dependencies
+├── tsconfig.json          # TypeScript configuration
+├── .vscodeignore         # Files excluded from extension package
+└── README.md             # This file
+```
+
+### Why Bun?
+- ⚡ **Much faster** than npm for package installation and script execution
+- 🔧 **Better dependency resolution** - resolves TypeScript compilation issues
+- 📦 **Smaller lockfile** (`bun.lockb` vs `package-lock.json`)
+- 🚀 **Native TypeScript support** without additional configuration
+
 ## WordPress Project Detection
 
 The extension automatically detects WordPress projects by checking for:
