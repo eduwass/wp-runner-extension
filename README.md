@@ -25,6 +25,8 @@ A smart VSCode extension to run PHP code in WordPress context with both quick ex
 
 ### 🎛️ Multiple Access Methods
 - **Editor buttons**: Visual buttons in the editor title bar (only in WordPress projects)
+  - **Always visible**: Run File (▶️), Run File in Shell (🖥️), Open Shell (💻)
+  - **When text selected**: Run Selection (⭕), Run Selection in Shell (📟) - different colored icons
 - **Context menus**: Right-click options for selected code
 - **Keyboard shortcuts**: Fast access via customizable key combinations
 - **Command Palette**: Access via `Cmd+P` → `>WordPress Runner` for all commands

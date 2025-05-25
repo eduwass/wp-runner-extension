@@ -40,9 +40,7 @@
             "command": "bunx",
             "args": [
                 "vsce",
-                "package",
-                "--out",
-                "wp-runner-${config:wp-runner.version}.vsix"
+                "package"
             ],
             "group": "build",
             "presentation": {

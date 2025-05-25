@@ -29,7 +29,8 @@
       {
         "command": "wp-runner.runSelection",
         "title": "WordPress Runner: Run Selection (wp eval)",
-        "category": "WordPress Runner"
+        "category": "WordPress Runner",
+        "icon": "$(play-circle)"
       },
       {
         "command": "wp-runner.runFileInShell",
@@ -40,7 +41,8 @@
       {
         "command": "wp-runner.runSelectionInShell",
         "title": "WordPress Runner: Run Selection in Shell (wp shell)",
-        "category": "WordPress Runner"
+        "category": "WordPress Runner",
+        "icon": "$(terminal-cmd)"
       },
       {
         "command": "wp-runner.openShell",
@@ -92,6 +94,16 @@
           "when": "resourceExtname == .php && wp-runner.isWordPressProject",
           "command": "wp-runner.openShell",
           "group": "navigation@3"
+        },
+        {
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "command": "wp-runner.runSelection",
+          "group": "navigation@4"
+        },
+        {
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "command": "wp-runner.runSelectionInShell",
+          "group": "navigation@5"
         }
       ],
       "editor/context": [
