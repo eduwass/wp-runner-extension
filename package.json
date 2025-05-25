@@ -1,0 +1,148 @@
+{
+  "name": "wp-runner",
+  "displayName": "WordPress Runner",
+  "description": "Run PHP code in WordPress context directly from VSCode",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:php"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "wp-runner.runFile",
+        "title": "WordPress Runner: Run File (wp eval)",
+        "category": "WordPress Runner",
+        "icon": "$(play)"
+      },
+      {
+        "command": "wp-runner.runSelection",
+        "title": "WordPress Runner: Run Selection (wp eval)",
+        "category": "WordPress Runner"
+      },
+      {
+        "command": "wp-runner.runFileInShell",
+        "title": "WordPress Runner: Run File in Shell (wp shell)",
+        "category": "WordPress Runner",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "wp-runner.runSelectionInShell",
+        "title": "WordPress Runner: Run Selection in Shell (wp shell)",
+        "category": "WordPress Runner"
+      },
+      {
+        "command": "wp-runner.openShell",
+        "title": "WordPress Runner: Open WordPress Shell",
+        "category": "WordPress Runner",
+        "icon": "$(terminal-bash)"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "wp-runner.runFile",
+          "when": "resourceExtname == .php && wp-runner.isWordPressProject",
+          "group": "wp-runner"
+        },
+        {
+          "command": "wp-runner.runSelection",
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "group": "wp-runner"
+        },
+        {
+          "command": "wp-runner.runFileInShell",
+          "when": "resourceExtname == .php && wp-runner.isWordPressProject",
+          "group": "wp-runner"
+        },
+        {
+          "command": "wp-runner.runSelectionInShell",
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "group": "wp-runner"
+        },
+        {
+          "command": "wp-runner.openShell",
+          "when": "wp-runner.isWordPressProject",
+          "group": "wp-runner"
+        }
+      ],
+      "editor/title": [
+        {
+          "when": "resourceExtname == .php && wp-runner.isWordPressProject",
+          "command": "wp-runner.runFile",
+          "group": "navigation@1"
+        },
+        {
+          "when": "resourceExtname == .php && wp-runner.isWordPressProject",
+          "command": "wp-runner.runFileInShell",
+          "group": "navigation@2"
+        },
+        {
+          "when": "resourceExtname == .php && wp-runner.isWordPressProject",
+          "command": "wp-runner.openShell",
+          "group": "navigation@3"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "command": "wp-runner.runSelection",
+          "group": "wp-runner@1"
+        },
+        {
+          "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject",
+          "command": "wp-runner.runSelectionInShell",
+          "group": "wp-runner@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "wp-runner.runFile",
+        "key": "ctrl+r",
+        "mac": "cmd+r",
+        "when": "resourceExtname == .php && wp-runner.isWordPressProject"
+      },
+      {
+        "command": "wp-runner.runSelection",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r",
+        "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject"
+      },
+      {
+        "command": "wp-runner.runFileInShell",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": "resourceExtname == .php && wp-runner.isWordPressProject"
+      },
+      {
+        "command": "wp-runner.runSelectionInShell",
+        "key": "ctrl+alt+shift+r",
+        "mac": "cmd+alt+shift+r",
+        "when": "resourceExtname == .php && editorHasSelection && wp-runner.isWordPressProject"
+      },
+      {
+        "command": "wp-runner.openShell",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "resourceExtname == .php && wp-runner.isWordPressProject"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  }
+} 
