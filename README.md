@@ -43,6 +43,33 @@ A smart VSCode extension to run PHP code in WordPress context with both quick ex
 - WordPress installation with WP-CLI available
 - VSCode workspace should be in your WordPress project directory
 
+## Configuration
+
+### Shell Delay Setting
+The extension includes a configurable delay for shell initialization to ensure commands are sent after the WordPress shell is fully loaded.
+
+**Setting**: `wp-runner.shellDelay`
+- **Default**: 2500ms (2.5 seconds)
+- **Range**: 500ms - 5000ms
+- **Description**: Delay before sending commands to wp shell (allows shell to initialize properly)
+
+**To adjust the delay:**
+1. Open VS Code Settings (`Cmd+,` / `Ctrl+,`)
+2. Search for "WordPress Runner"
+3. Adjust the "Shell Delay" value
+4. Or add to your `settings.json`:
+   ```json
+   {
+     "wp-runner.shellDelay": 2500
+   }
+   ```
+
+**When to adjust:**
+- **Increase delay** if commands aren't executing properly in shell mode
+- **Decrease delay** for faster execution if your system is responsive
+- **Slower systems** may need 3000-4000ms
+- **Fast systems** may work well with 1500-2000ms
+
 ## Development
 
 ### Prerequisites

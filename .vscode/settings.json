@@ -1,4 +1,5 @@
 {
     "files.exclude": {},
     "explorer.excludeGitIgnore": false,
+    "wp-runner.shellDelay": 2500
 }

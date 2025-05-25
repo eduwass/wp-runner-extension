@@ -247,6 +247,10 @@ function runPHPCode(code: string, mode: 'eval' | 'shell') {
 }
 
 function runInWordPressShell(code: string, workspacePath: string) {
+    // Get the configured delay from settings
+    const config = vscode.workspace.getConfiguration('wp-runner');
+    const shellDelay = config.get<number>('shellDelay', 2500);
+    
     // Find existing WordPress shell terminal or create new one
     let shellTerminal = vscode.window.terminals.find(terminal => 
         terminal.name === 'WordPress Shell (Interactive)'
@@ -263,12 +267,12 @@ function runInWordPressShell(code: string, workspacePath: string) {
         shellTerminal.show();
         shellTerminal.sendText('wp shell');
         
-        // Wait a moment for shell to initialize, then send code
+        // Wait for shell to initialize using configured delay, then send code
         setTimeout(() => {
             if (shellTerminal) {
                 sendCodeToShell(shellTerminal, code);
             }
-        }, 2000);
+        }, shellDelay);
     } else {
         // Use existing shell
         shellTerminal.show();

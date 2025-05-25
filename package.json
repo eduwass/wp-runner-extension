@@ -19,6 +19,18 @@
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "WordPress Runner",
+      "properties": {
+        "wp-runner.shellDelay": {
+          "type": "number",
+          "default": 2500,
+          "minimum": 500,
+          "maximum": 5000,
+          "description": "Delay in milliseconds before sending commands to wp shell (allows shell to initialize properly)"
+        }
+      }
+    },
     "commands": [
       {
         "command": "wp-runner.runFile",
